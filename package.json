@@ -31,8 +31,9 @@
     "prettier": "^1.14.3"
   },
   "engines" : { "node" : ">=13.13.0" },
-  "config": {
-    "nuxt": {
-      "port": "8000"
-  }
+   "config": {
+      "nuxt": {
+        "port": 8000
+      }
+   },
 }
