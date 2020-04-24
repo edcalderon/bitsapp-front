@@ -33,6 +33,6 @@
   "engines" : { "node" : ">=13.13.0" },
   "config": {
     "nuxt": {
-      "port": 8000
+      "port": "8000"
   },
 }
