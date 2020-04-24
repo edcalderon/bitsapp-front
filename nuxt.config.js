@@ -19,7 +19,9 @@ module.exports = {
   env: {
     API_URL: process.env.API_URL
   },
-
+  server: {
+    port: 8000, // default: 3000
+  },
   /*
    ** Customize the progress bar color
    */
