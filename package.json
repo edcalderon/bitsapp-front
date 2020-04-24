@@ -30,10 +30,10 @@
     "eslint-plugin-vue": "^4.7.1",
     "prettier": "^1.14.3"
   },
-  "engines" : { "node" : ">=13.13.0" },
-   "config": {
+  "config": {
       "nuxt": {
         "port": "8000"
       }
-   },
+  },
+  "engines" : { "node" : ">=13.13.0" }
 }
