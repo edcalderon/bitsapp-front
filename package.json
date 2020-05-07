@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "heroku-postbuild": "npm run build && npm start"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc19",
@@ -32,7 +32,9 @@
     "eslint-plugin-vue": "^4.7.1",
     "prettier": "^1.14.3"
   },
-  "engines": {
-    "node": ">=13.13.0"
-  }
-}
+  "config": {
+      "nuxt": {
+        "port": "8000"
+      }
+  },
+  "engines" : { "node" : ">=13.13.0" }
