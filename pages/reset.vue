@@ -3,18 +3,20 @@
     <div class="col-md-6 offset-md-3 mt-3">
       <form autocomplete="off" @submit.stop.prevent="handleSubmit">
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="password">New Password</label>
           <b-form-input
-            id="email"
-            v-model="email"
-            type="email"
+            id="password"
+            v-model="password"
+            label="password"
+            type="password"
+            class="form-control"
             autofocus="true"
-            placeholder="Enter your email"
+            placeholder="Enter your password"
             required
           />
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">Repeat Password</label>
           <b-form-input
             id="password"
             v-model="password"
@@ -33,18 +35,6 @@
         >
           Submit
         </button>
-        <p class="text-center mt-3">
-          No account yet
-          <router-link :to="{ name: 'signup' }" tag="a">
-            Register
-          </router-link>
-        </p>
-        <p class="text-center mt-3">
-          Forgot password?
-          <router-link :to="{ name: 'forgot' }" tag="a">
-            Recover
-          </router-link>
-        </p>
       </form>
     </div>
   </section>
@@ -54,11 +44,9 @@
 import Strapi from 'strapi-sdk-javascript/build/main'
 const apiUrl = process.env.API_URL || 'http://localhost:1337'
 const strapi = new Strapi(apiUrl)
-import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
-      email: '',
       password: '',
       loading: false
     }
@@ -66,19 +54,23 @@ export default {
   methods: {
     async handleSubmit() {
       try {
+        let uri = window.location.search.substring(1)
+        let params = new URLSearchParams(uri)
+        console.log(params.get('code'))
         this.loading = true
-        const response = await strapi.login(this.email, this.password)
+        const response = await strapi.resetPassword(
+          params.get('code'),
+          this.password,
+          this.password
+        )
         this.loading = false
         this.setUser(response.user)
-        this.$router.go(-1)
+        this.$router.push('/')
       } catch (err) {
         this.loading = false
         alert(err.message || 'An error occurred.')
       }
-    },
-    ...mapMutations({
-      setUser: 'auth/setUser'
-    })
+    }
   }
 }
 </script>

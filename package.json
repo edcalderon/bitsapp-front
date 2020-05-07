@@ -13,10 +13,12 @@
     "heroku-postbuild": "npm run build && npm start"
   },
   "dependencies": {
+    "@nuxtjs/apollo": "^4.0.0-rc19",
     "bootstrap-vue": "^2.0.0-rc.11",
     "cookieparser": "^0.1.0",
+    "graphql": "^15.0.0",
     "js-cookie": "^2.2.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.12.2",
     "strapi-sdk-javascript": "^0.3.0",
     "vue-stripe-elements-plus": "^0.2.9"
   },
@@ -30,5 +32,7 @@
     "eslint-plugin-vue": "^4.7.1",
     "prettier": "^1.14.3"
   },
-  "engines" : { "node" : ">=13.13.0" } 
+  "engines": {
+    "node": ">=13.13.0"
+  }
 }

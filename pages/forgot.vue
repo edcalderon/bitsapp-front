@@ -13,19 +13,6 @@
             required
           />
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <b-form-input
-            id="password"
-            v-model="password"
-            label="password"
-            type="password"
-            class="form-control"
-            autofocus="true"
-            placeholder="Enter your password"
-            required
-          />
-        </div>
         <button
           :disabled="loading"
           type="submit"
@@ -39,12 +26,6 @@
             Register
           </router-link>
         </p>
-        <p class="text-center mt-3">
-          Forgot password?
-          <router-link :to="{ name: 'forgot' }" tag="a">
-            Recover
-          </router-link>
-        </p>
       </form>
     </div>
   </section>
@@ -54,12 +35,10 @@
 import Strapi from 'strapi-sdk-javascript/build/main'
 const apiUrl = process.env.API_URL || 'http://localhost:1337'
 const strapi = new Strapi(apiUrl)
-import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
       email: '',
-      password: '',
       loading: false
     }
   },
@@ -67,7 +46,7 @@ export default {
     async handleSubmit() {
       try {
         this.loading = true
-        const response = await strapi.login(this.email, this.password)
+        const response = await strapi.forgotPassword(this.email, 'signup')
         this.loading = false
         this.setUser(response.user)
         this.$router.go(-1)
@@ -75,10 +54,7 @@ export default {
         this.loading = false
         alert(err.message || 'An error occurred.')
       }
-    },
-    ...mapMutations({
-      setUser: 'auth/setUser'
-    })
+    }
   }
 }
 </script>

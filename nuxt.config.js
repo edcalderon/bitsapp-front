@@ -7,7 +7,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'DEFI APP' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [{ src: 'https://js.stripe.com/v3' }]
@@ -45,5 +45,15 @@ module.exports = {
       }
     }
   },
-  modules: ['bootstrap-vue/nuxt']
+  modules: [
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/apollo',
+  ],
+  apollo: {  
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'http://localhost:1337/graphql'
+      }
+    }
+  },
 }
